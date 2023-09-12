@@ -17,11 +17,14 @@
         <x-form.input name="firstname" :value="$student->firstname"/>
         <x-form.input type="email" name="email" :value="$student->email"/>
         <x-form.input type="number" name="num_etu" :value="$student->num_etu"/>
+        <label for="formation_id">Formation</label>
         <select name="formation_id">
             @foreach ($formation as $f)
                 <option
-                        @if( $f->id == old('formation_id')) selected @endif
-                value="{{ $f->id }}">{{"$f->id"}} {{ "$f->name" }}</option>
+                        @if( $f->id == old('formation_id')) selected
+                        @elseif($f->id == $student->formation_id) selected
+                        @endif
+                value="{{ $f->id }}">{{ "$f->name" }}</option>
             @endforeach
         </select>
         <button class="m-2 p-2 rounded-full bg-pink-600 text-white w-1/6" type="submit">Modifier</button>
