@@ -19,7 +19,7 @@
         @endforeach
 
     @endif
-    <form class="flex flex-col gap-2 m-auto" method="POST" action="{{ route('formation.store') }}">
+    <form class="flex flex-col gap-2 m-auto" method="POST" action="{{ route('admin.formation.store') }}">
         @csrf
         <x-form.input name="categorie"/>
         <x-form.input name="name"/>
@@ -29,6 +29,17 @@
         <x-form.input name="option"/>
         <x-form.input type="date" name="begin"/>
         <x-form.input type="date" name="end"/>
+        <label for="etudiant">Etudiants :</label>
+        <div class="flex flex-row gap-2 items-center flex-wrap ">
+            @foreach($students as $s)
+                <span class="">
+                    <input class="m-2.5 p-2.5" type="checkbox" name="student[]"
+                           value="{{$s->id}}"
+                           @if(in_array($s->id, old('student', []))) checked @endif >
+                    {{$s->lastname}} {{$s->firstname}} <br>
+                </span>
+            @endforeach
+        </div>
         <button class="m-2 p-2 rounded-full bg-pink-600 text-white" type="submit">Modifier</button>
     </form>
 </x-app-layout>

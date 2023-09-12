@@ -21,6 +21,7 @@
         <x-form.input name="option" :value="$formation->option"/>
         <x-form.input type="date" name="begin" :value="$formation->begin"/>
         <x-form.input type="date" name="end" :value="$formation->end"/>
+        
         <button class="m-2 p-2 rounded-full bg-pink-600 text-white w-fit" type="submit">Modifier</button>
     </form>
 </x-app-layout>

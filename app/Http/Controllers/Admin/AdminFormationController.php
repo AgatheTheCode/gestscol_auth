@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FormationRequest;
 use App\Models\Formation;
+use App\Models\Student;
 use Illuminate\Http\Request;
 
 class AdminFormationController extends Controller
@@ -13,6 +14,7 @@ class AdminFormationController extends Controller
     {
         $this->authorizeResource(Formation::class);
     }
+
     /**
      * Display a listing of the resource.
      */
@@ -29,7 +31,10 @@ class AdminFormationController extends Controller
      */
     public function create()
     {
-        return view('admin.formation.create');
+        $students = Student::orderBy('lastname', 'asc')->get();
+        return view('admin.formation.create', [
+            'students' => $students
+        ]);
     }
 
     /**
@@ -37,8 +42,18 @@ class AdminFormationController extends Controller
      */
     public function store(FormationRequest $request)
     {
+
         $data = $request->validated();
-        $formation = Formation::create($data);
+        //dd($data);
+        $formation = new Formation();
+        $formation->fill($data);
+        $formation->save();
+        if (!empty($data['student'])) {
+            foreach (Student::whereIn('id', $data['student'])->get() as $student) {
+                $student->formation()->associate($formation);
+                $student->save();
+            }
+        }
         return redirect()->route('admin.formation.show', ['formation' => $formation]);
     }
 
@@ -57,8 +72,10 @@ class AdminFormationController extends Controller
      */
     public function edit(Formation $formation)
     {
+        $student = Student::orderBy('lastname', 'asc')->get();
         return view('admin.formation.edit', [
-            'formation' => $formation
+            'formation' => $formation,
+            'students' => $student
         ]);
     }
 
@@ -67,7 +84,7 @@ class AdminFormationController extends Controller
      */
     public function update(FormationRequest $request, Formation $formation)
     {
-        $data = $request-> validated();
+        $data = $request->validated();
         $formation->fill($data);
         $formation->save();
         return redirect()->route('admin.formation.show', ['formation' => $formation]);
