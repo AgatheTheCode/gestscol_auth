@@ -22,14 +22,16 @@ class FormationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'category' => 'required|string',
+            'categorie' => 'required|string',
             'name' => 'required|string',
             'promotion' => 'required|integer',
             'num_tp' => 'required|integer',
             'num_td' => 'required|integer',
             'option' => 'required|string',
             'begin' => 'nullable|date',
-            'end' => 'required_with:begin|date'
+            'end' => 'nullable|date',
+            //'end' => 'required_with:begin|date',
+            'student.*' => 'required|integer|exists:students,id',
         ];
     }
 }
