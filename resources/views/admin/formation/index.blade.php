@@ -2,9 +2,9 @@
     <x-slot name="header">
     Formation
     </x-slot>
-
-    <a href="{{ route('admin.formation.create') }}">Ajouter une formation</a>
-
+    @can('create', App\Models\Formation::class)
+        <a href="{{ route('admin.formation.create') }}">Ajouter une formation</a>
+    @endcan
     <ul>
         @empty($formation)
             <p>No formation found</p>

@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Validation\Rules\Enum;
 use Laravel\Sanctum\HasApiTokens;
-use app\Enums\UserLevel;
+use App\Enums\UserLevel;
 
 class User extends Authenticatable
 {
