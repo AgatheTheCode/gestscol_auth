@@ -68,6 +68,13 @@
                 <dd>{{$formation->end?->format('d/m/Y')}}</dd>
             </div>
         @endif
+        @if($formation->students->isNotEmpty())
+            <ul>
+                @foreach($formation->students as $student)
+                    <li><a href="{{ route('admin.student.show', $student) }}"> {{ $student->firstname }} {{ $student->lastname }}</a></li>
+                @endforeach
+            </ul>
+        @endif
     </dl>
     <a class="m-2 p-2 rounded-full bg-pink-600 text-white w-1/12" href="{{ route('admin.formation.index') }}">Retour à
                                                                                                               la

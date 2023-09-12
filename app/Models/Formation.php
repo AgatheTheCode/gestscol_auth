@@ -15,4 +15,9 @@ class Formation extends Model
         'begin' => 'date',
         'end' => 'date',
     ];
+
+    public function students(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Student::class);
+    }
 }
