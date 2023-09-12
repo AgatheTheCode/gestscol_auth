@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 
 class AdminFormationController extends Controller
 {
+    public function __construct() //pour autoriser l'accès à l'admin pour la création, la modification et la suppression
+    {
+        $this->authorizeResource(Formation::class);
+    }
     /**
      * Display a listing of the resource.
      */
