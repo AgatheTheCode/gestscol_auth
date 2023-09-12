@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StudentRequest;
 use App\Models\Student;
 use Illuminate\Http\Request;
-
+use App\Models\Formation;
 
 class AdminStudentController extends Controller
 {
@@ -28,7 +28,10 @@ class AdminStudentController extends Controller
     public function create()
     {
         $this->authorize('create', Student::class);
-        return view('admin.student.create');
+        $formation = Formation::orderBy('name','asc')->get();
+        return view('admin.student.create', [
+            'formations' => $formation
+        ]);
     }
 
     /**
@@ -59,7 +62,9 @@ class AdminStudentController extends Controller
     public function edit(Student $student)
     {
         $this->authorize('update', $student);
+        $formation = Formation::orderBy('name','asc')->get();
         return view('admin.student.edit', [
+            'formation' => $formation,
             'student' => $student
         ]);
     }

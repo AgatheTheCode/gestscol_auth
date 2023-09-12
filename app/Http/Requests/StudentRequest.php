@@ -25,7 +25,8 @@ class StudentRequest extends FormRequest
             'lastname' => 'required|string', //l'ordre importe peu
             'firstname' => 'required|string',
             'email' => 'required|email',
-            'num_etu' => 'required|integer'
+            'num_etu' => 'required|integer',
+            'formation_id' => 'nullable|integer|exists:formations,id'
         ];
     }
 }

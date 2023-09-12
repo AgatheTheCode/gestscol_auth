@@ -24,6 +24,10 @@
             Numéro étudiant
         </dt>
         <dd>{{ $student->num_etu}}</dd>
+        <dt>
+            Formation
+        </dt>
+        <dd>{{ $student->formation->name ?? 'N/A' }}</dd>
     </dl>
     <div class="flex flex-col gap-1">
         <a class="m-2 p-2 rounded-full bg-pink-600 text-white w-1/12" href="{{ route('admin.student.index') }}">Retour à
