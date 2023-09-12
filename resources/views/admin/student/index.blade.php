@@ -2,9 +2,10 @@
     <x-slot name="header">
         Etudiant
     </x-slot>
-    title="Tout les éléves">
-    <h1>Student</h1>
-    <a href="{{ route('admin.student.create') }}">Ajouter un étudiant</a>
+    <h3>Student</h3>
+    @can('create', App\Models\Student::class)
+        <a href="{{ route('admin.student.create') }}">Ajouter un étudiant</a>
+    @endcan
     <ul>
         @empty( $student)
             <p>No student found</p>

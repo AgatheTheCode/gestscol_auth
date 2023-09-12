@@ -7,6 +7,7 @@ use App\Http\Requests\StudentRequest;
 use App\Models\Student;
 use Illuminate\Http\Request;
 
+
 class AdminStudentController extends Controller
 {
     /**
@@ -14,6 +15,7 @@ class AdminStudentController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', Student::class);
         $students = Student::all();
         return view('admin.student.index', [
             'student' => $students
@@ -25,6 +27,7 @@ class AdminStudentController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Student::class);
         return view('admin.student.create');
     }
 
@@ -33,6 +36,7 @@ class AdminStudentController extends Controller
      */
     public function store(StudentRequest $request)
     {
+        $this->authorize('create', Student::class);
         $data = $request->validated();
         $student = Student::create($data);
         return redirect()->route('admin.student.show', ['student' => $student]);
@@ -43,6 +47,7 @@ class AdminStudentController extends Controller
      */
     public function show(Student $student)
     {
+        $this->authorize('view', $student);
         return view('admin.student.show', [
             'student' => $student
         ]);
@@ -53,6 +58,7 @@ class AdminStudentController extends Controller
      */
     public function edit(Student $student)
     {
+        $this->authorize('update', $student);
         return view('admin.student.edit', [
             'student' => $student
         ]);
@@ -63,6 +69,7 @@ class AdminStudentController extends Controller
      */
     public function update(StudentRequest $request, Student $student)
     {
+        $this->authorize('update', $student);
         $data = $request->validated();
         $student->fill($data);
         $student->save();
@@ -74,6 +81,7 @@ class AdminStudentController extends Controller
      */
     public function destroy(Student $student)
     {
+        $this->authorize('delete', $student);
         $student->delete();
         return redirect()->route('admin.student.index');
     }
