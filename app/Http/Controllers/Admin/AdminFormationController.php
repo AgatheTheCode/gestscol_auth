@@ -87,6 +87,17 @@ class AdminFormationController extends Controller
         $data = $request->validated();
         $formation->fill($data);
         $formation->save();
+        foreach ($formation->students as $student) { //supprime l'association entre les étudiants et la formation
+            $student->formation()->associate(null);
+            $student->save();
+        }
+
+        if (!empty($data['student'])) { //recrée l'association entre les étudiants et la formation
+            foreach (Student::whereIn('id', $data['student'])->get() as $student) {
+                $student->formation()->associate($formation);
+                $student->save();
+            }
+        }
         return redirect()->route('admin.formation.show', ['formation' => $formation]);
     }
 
