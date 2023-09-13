@@ -21,7 +21,16 @@
         <x-form.input name="option" :value="$formation->option"/>
         <x-form.input type="date" name="begin" :value="$formation->begin"/>
         <x-form.input type="date" name="end" :value="$formation->end"/>
-        
+        <div class="flex flex-row gap-2 items-center flex-wrap ">
+            @foreach($students as $s)
+                <span class="">
+                    <input class="m-2.5 p-2.5" type="checkbox" name="student[]"
+                           value="{{$s->id}}"
+                           @if( in_array($s->id, old('student', $formation->students->pluck('id')->all())) ) checked @endif >
+                    {{$s->lastname}} {{$s->firstname}} <br>
+                </span>
+            @endforeach
+        </div>
         <button class="m-2 p-2 rounded-full bg-pink-600 text-white w-fit" type="submit">Modifier</button>
     </form>
 </x-app-layout>
