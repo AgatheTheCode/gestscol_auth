@@ -13,8 +13,8 @@
     <form class="flex flex-col gap-2 " method="POST" action="{{ route('admin.group.update', $group) }}">
         @csrf
         @method('PUT')
-        <x-form.input type="number" name="TD_numero"/>
-        <x-form.input type="number" name="TP_numero"/>
+        <x-form.input type="number" name="TD_numero" :value="$group->TD_numero"/>
+        <x-form.input type="number" name="TP_numero" :value="$group->TP_numero"/>
         <label for="etudiant">Etudiants :</label>
         <div class="flex flex-row gap-2 items-center flex-wrap ">
 

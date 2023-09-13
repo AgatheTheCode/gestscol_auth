@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\admin\EdtController;
 use App\Http\Controllers\admin\GroupController;
+use App\Http\Controllers\Admin\ManagerController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
@@ -40,6 +42,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
     Route::resource('/student', AdminStudentController::class);
     Route::resource('/formation', AdminFormationController::class);
     Route::resource('/group', GroupController::class);
+    Route::resource('/edt', EdtController::class);
+    Route::resource('/manager', ManagerController::class);
 });
 //Route Student
 
@@ -67,3 +71,10 @@ Route::delete("/formation/{formation}", [FormationController::class, "destroy"])
 //use
 Route::get("/formation", [FormationController::class, "index"])->name('formation.index');
 Route::get("/formation/{formation}", [FormationController::class, "show"])->name('formation.show');
+
+
+//route Group
+//use
+
+Route::get("/group", [GroupController::class, "index"])->name('group.index');
+Route::get("/group/{group}", [GroupController::class, "show"])->name('group.show');

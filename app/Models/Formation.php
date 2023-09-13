@@ -9,7 +9,7 @@ class Formation extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['categorie', 'name', 'promotion', 'num_tp', 'num_td', 'option', 'begin', 'end'];
+    protected $fillable = ['categorie', 'name', 'promotion', 'option', 'begin', 'end'];
 
     protected $casts = [ // pour les dates
         'begin' => 'date',
@@ -19,5 +19,9 @@ class Formation extends Model
     public function students(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Student::class);
+    }
+    public function edt(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Edt::class);
     }
 }

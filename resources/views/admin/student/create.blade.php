@@ -22,9 +22,18 @@
                 @foreach ($formations as $f)
                     <option
                         @if( $f->id == old('formation_id')) selected @endif
-                        value="{{ $f->id }}">{{ "$f->name" }}</option>
+                    value="{{ $f->id }}">{{ "$f->name" }}</option>
                 @endforeach
             </select>
+
+            @foreach($groups as $g)
+                <span class="">
+                    <input class="m-2.5 p-2.5" type="checkbox" name="groups[]"
+                           @if( in_array($g->id, old('groups', [])) ) checked @endif
+                    value="{{$g->id}}">
+                    TD : {{$g->TD_numero}}  TP: {{$g->TP_numero}} <br>
+                </span>
+            @endforeach
             <button class="m-2 p-2 rounded-full bg-pink-600 text-white w-1/12" type="submit">Ajouter</button>
         </form>
     </wrap>

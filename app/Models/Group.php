@@ -11,4 +11,9 @@ class Group extends Model
 
     protected $fillable = ['TD_numero', 'TP_numero'];
 
+    public function students(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Student::class);
+    }
+
 }
