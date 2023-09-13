@@ -21,12 +21,23 @@
         <select name="formation_id">
             @foreach ($formation as $f)
                 <option
-                        @if( $f->id == old('formation_id')) selected
-                        @elseif($f->id == $student->formation_id) selected
-                        @endif
-                value="{{ $f->id }}">{{ "$f->name" }}</option>
+                    @if( $f->id == old('formation_id')) selected
+                    @elseif($f->id == $student->formation_id) selected
+                    @endif
+                    value="{{ $f->id }}">{{ "$f->name" }}</option>
             @endforeach
         </select>
+
+        @foreach($groups as $g)
+            <span class="">
+                    <input class="m-2.5 p-2.5" type="checkbox" name="groups[]"
+                           @if( in_array($g->id, old('groups', [])) ) checked
+                           @elseif( in_array($g->id, $student->groups->pluck('id')->toArray()) ) checked
+                           @endif
+                           value="{{$g->id}}">
+                    TD : {{$g->TD_numero}}  TP: {{$g->TP_numero}} <br>
+                </span>
+        @endforeach
         <button class="m-2 p-2 rounded-full bg-pink-600 text-white w-1/6" type="submit">Modifier</button>
     </form>
 </x-app-layout>

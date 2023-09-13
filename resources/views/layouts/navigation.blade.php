@@ -22,7 +22,10 @@
                         {{ __('Formations') }}
                     </x-nav-link>
                     <x-nav-link :href="route('admin.group.index')" :active="request()->routeIs('admin.group.index')">
-                        {{ __('Group') }}
+                        {{ __('Groupe') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('admin.edt.index')" :active="request()->routeIs('admin.group.index')">
+                        {{ __('Emploi du Temps') }}
                     </x-nav-link>
 
                 </div>
@@ -87,7 +90,10 @@
                 {{ __('Formation') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('admin.group.index')" :active="request()->routeIs('dashboard')">
-                {{ __('Group') }}
+                {{ __('Groupe') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin.edt.index')" :active="request()->routeIs('dashboard')">
+                {{ __('Emploi du temps') }}
             </x-responsive-nav-link>
         </div>
 

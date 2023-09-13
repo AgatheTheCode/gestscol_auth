@@ -37,19 +37,6 @@
         </div>
         <div class="flex flex-row">
 
-            <dt>
-                Nombre de TD :
-            </dt>
-            <dd>{{$formation->num_td}}</dd>
-        </div>
-        <div class="flex flex-row">
-
-            <dt>
-                Nombre de TP :
-            </dt>
-            <dd>{{$formation->num_tp}}</dd>
-        </div>
-
         @if($formation->begin)
             <div class="flex flex-row">
 

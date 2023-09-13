@@ -27,7 +27,30 @@
         <dt>
             Formation
         </dt>
-        <dd>{{ $student->formation->name ?? 'N/A' }}</dd>
+
+        @empty($student->formation)
+            <dd> N/A </dd>
+        @else
+            <dd>{{ $student->formation->name }}</dd>
+        @endempty
+
+        @empty($student->groups)
+            <dd> N/A </dd>
+        @else
+            <dt>
+                Groupe
+            </dt>
+            <dd>
+                <ul>
+                    @foreach($student->groups as $g)
+                        <li>
+                            TD {{ $g->TD_numero }} TP {{ $g->TP_numero }}
+                        </li>
+                    @endforeach
+                </ul>
+            </dd>
+        @endempty
+
     </dl>
     <div class="flex flex-col gap-1">
         <a class="m-2 p-2 rounded-full bg-pink-600 text-white w-1/12" href="{{ route('admin.student.index') }}">Retour à
