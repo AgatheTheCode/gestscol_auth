@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\GroupController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
@@ -38,6 +39,7 @@ require __DIR__ . '/auth.php';
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], function () {
     Route::resource('/student', AdminStudentController::class);
     Route::resource('/formation', AdminFormationController::class);
+    Route::resource('/group', GroupController::class);
 });
 //Route Student
 
