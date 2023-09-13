@@ -21,6 +21,9 @@
                     <x-nav-link :href="route('admin.formation.index')" :active="request()->routeIs('admin.formation.index')">
                         {{ __('Formations') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('admin.group.index')" :active="request()->routeIs('admin.group.index')">
+                        {{ __('Group') }}
+                    </x-nav-link>
 
                 </div>
             </div>
@@ -82,6 +85,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('admin.formation.index')" :active="request()->routeIs('dashboard')">
                 {{ __('Formation') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin.group.index')" :active="request()->routeIs('dashboard')">
+                {{ __('Group') }}
             </x-responsive-nav-link>
         </div>
 
