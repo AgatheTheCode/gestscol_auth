@@ -16,8 +16,6 @@
         <x-form.input name="categorie" :value="$formation->categorie"/>
         <x-form.input name="name" :value="$formation->name"/>
         <x-form.input name="promotion" :value="$formation->promotion"/>
-        <x-form.input type="number" name="num_tp" :value="$formation->num_tp"/>
-        <x-form.input type="number" name="num_td" :value="$formation->num_td"/>
         <x-form.input name="option" :value="$formation->option"/>
         <x-form.input type="date" name="begin" :value="$formation->begin"/>
         <x-form.input type="date" name="end" :value="$formation->end"/>

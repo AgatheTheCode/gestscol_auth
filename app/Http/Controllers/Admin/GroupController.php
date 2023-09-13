@@ -12,17 +12,15 @@ class GroupController extends Controller
 {
     public function __construct()
     {
-        $this->authorizeResource(Group::class, 'group');
+        $this->authorizeResource(Group::class, 'group'); //camelcase au lieu de snakecase
     }
 
     //READ part of CRUD
 
     public function index(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-
-        $groups = Group::all();
         return view('admin.group.index', [
-            'group' => $groups
+            'groups' => Group::orderBy('TD_numero', 'asc')->get()
         ]);
     }
 
@@ -34,16 +32,8 @@ class GroupController extends Controller
     }
 
     //CREATE part of CRUD
-
-    /**
-     * @throws AuthorizationException
-     */
     public function create(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-        //jointure avec la table student
-        // $students = Student::orderBy('lastname', 'asc')->get();
-        //jointure avec la table formation
-        // $formations = Formation::orderBy('name', 'asc')->get();
         return view('admin.group.create');
     }
 

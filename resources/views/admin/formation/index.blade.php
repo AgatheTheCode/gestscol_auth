@@ -14,9 +14,7 @@
                     <li>
                         <a href="{{ route('admin.formation.show', $f) }}"> {{$f -> categorie}}, {{$f -> name}}
                                                                                               , {{$f-> promotion}}
-                                                                                              , {{$f->option}},tp
-                                                                                              : {{$f->num_tp}};
-                                                                                              td: {{$f->num_td}} </a>
+                                                                                              , {{$f->option}} </a>
                     </li>
                 @endforeach
             </ul>

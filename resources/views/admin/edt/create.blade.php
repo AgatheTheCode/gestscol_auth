@@ -1,8 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
-        Formation
+        Emploi du temps
     </x-slot>
-    <h1 class="m-auto">Ajout d'une formation</h1>
+    <h1 class="m-auto">Ajout d'heures de cours</h1>
     @if($errors->any())
 
         @foreach($errors->all() as $error)
@@ -19,25 +19,25 @@
         @endforeach
 
     @endif
-    <form class="flex flex-col gap-2 m-auto" method="POST" action="{{ route('admin.formation.store') }}">
+    <form class="flex flex-col gap-2 m-auto" method="POST" action="{{ route('admin.edt.store') }}">
         @csrf
-        <x-form.input name="categorie"/>
-        <x-form.input name="name"/>
-        <x-form.input name="promotion"/>
-        <x-form.input name="option"/>
-        <x-form.input type="date" name="begin"/>
-        <x-form.input type="date" name="end"/>
-        <label for="etudiant">Etudiants :</label>
+        <x-form.input name="label"/>
+        <x-form.input name="room"/>
+        <x-form.input name="teacher"/>
+        <x-form.input type="date" name="date"/>
+        <x-form.input type="time" name="begin"/>
+        <x-form.input type="time" name="end"/>
+        <label for="etudiant">Formation :</label>
         <div class="flex flex-row gap-2 items-center flex-wrap ">
-            @foreach($students as $s)
-                <span class="">
-                    <input class="m-2.5 p-2.5" type="checkbox" name="student[]"
-                           value="{{$s->id}}"
-                           @if(in_array($s->id, old('student', []))) checked @endif >
-                    {{$s->lastname}} {{$s->firstname}} <br>
-                </span>
-            @endforeach
+            <select name="formation_id">
+                <option value="">-- Formation --</option>
+                @foreach($formations as $f)
+                    <option
+                        @if( $f->id == old('formation_id')) selected @endif
+                    value="{{ $f->id }}">{{ "$f->name" }}</option>
+                @endforeach
+            </select>
         </div>
-        <button class="m-2 p-2 rounded-full bg-pink-600 text-white" type="submit">Modifier</button>
+        <button class="m-2 p-2 rounded-full bg-pink-600 text-white" type="submit">Créer</button>
     </form>
 </x-app-layout>

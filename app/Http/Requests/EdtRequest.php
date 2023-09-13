@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class FormationRequest extends FormRequest
+class EdtRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,14 +22,15 @@ class FormationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'categorie' => 'required|string',
-            'name' => 'required|string',
-            'promotion' => 'required|integer',
-            'option' => 'required|string',
-            'begin' => 'nullable|date',
-            'end' => 'nullable|date',
-            //'end' => 'required_with:begin|date',
-            'student.*' => 'required|integer|exists:students,id',
+            'label' =>'required|string',
+            'room' => 'required|string',
+            'teacher' =>'nullable|string',
+            'date' => 'required|date',
+            'begin' => 'required|date_format:H:i',
+            'end' => 'required|date_format:H:i|after:begin',
+            'formation_id' => 'required|integer|exists:formations,id',
+            'group.*' => 'required|integer|exists:groups,id',
+
         ];
     }
 }
