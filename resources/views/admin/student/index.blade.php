@@ -3,6 +3,7 @@
         Etudiant
     </x-slot>
     <h3>Student</h3>
+    <livewire:student-filter />
     @can('create', App\Models\Student::class)
         <a href="{{ route('admin.student.create') }}">Ajouter un étudiant</a>
     @endcan
