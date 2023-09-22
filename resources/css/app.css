@@ -2,7 +2,40 @@
 @tailwind components;
 @tailwind utilities;
 
+main{
+    @apply p-2 m-auto;
+    @apply flex flex-col;
+    @apply justify-center;
+    @apply items-center;
+}
 p, h1, h2, h3, h4, h5, h6,a, div {
     font-family: 'Nunito', sans-serif;
     @apply text-white;
+}
+
+a:hover{
+    @apply text-gray-300;
+}
+a:active{
+    @apply text-gray-500;
+}
+a:visited{
+    @apply text-gray-500;
+}
+input{
+    @apply text-gray-900;
+}
+
+div{
+    @apply m-auto;
+}
+
+.stud{
+    @apply flex flex-col;
+    @apply justify-center;
+    @apply items-center;
+    @apply p-2;
+    @apply m-2;
+    @apply flex-wrap;
+    @apply w-1/3;
 }

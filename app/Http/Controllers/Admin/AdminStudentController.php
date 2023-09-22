@@ -17,10 +17,7 @@ class AdminStudentController extends Controller
     public function index()
     {
         $this->authorize('viewAny', Student::class);
-        $students = Student::all();
-        return view('admin.student.index', [
-            'student' => $students
-        ]);
+        return view('admin.student.index');
     }
 
     /**
