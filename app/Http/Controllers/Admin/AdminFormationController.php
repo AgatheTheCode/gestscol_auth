@@ -20,10 +20,7 @@ class AdminFormationController extends Controller
      */
     public function index()
     {
-        $formations = Formation::all();
-        return view('admin.formation.index', [
-            'formation' => $formations
-        ]);
+        return view('admin.formation.index');
     }
 
     /**
