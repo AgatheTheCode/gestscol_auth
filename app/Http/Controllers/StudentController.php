@@ -10,10 +10,7 @@ class StudentController extends Controller
 {
     public function index()
     {
-        $students = Student::all();
-        return view('student.index', [
-            'student' => $students
-        ]);
+        return view('student.index');
     }
 
     public function show(Student $student) //remplace le findorfail en étant lié au model
