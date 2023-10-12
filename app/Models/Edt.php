@@ -26,4 +26,9 @@ class Edt extends Model
     {
         return $this->belongsToMany(Group::class);
     }
+    public function students(): \Illuminate\Database\Eloquent\Relations\belongsToMany
+    {
+        return $this->belongsToMany(Student::class);
+    }
+
 }

@@ -1,5 +1,5 @@
 <div>
-    <p>Student Filter</p>
+    <h3 class="font-bold">Student Filter</h3>
     <input type="text" placeholder="search" value="" wire:model.live="search">
     <ul>
         @empty( $students)
